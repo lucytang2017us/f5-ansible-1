@@ -1,0 +1,19 @@
+---
+# file: bigip_shell_command.yml
+- name: Run shell command as needed 
+  hosts: localhost
+  connection: local
+  strategy: debug
+
+  tasks:
+  - name: run shell command
+    shell: "ls /home/f5/ansible-projects/playbooks"
+    args:
+       executable: /bin/bash 
+    register: playbooks
+
+  - name: whrite playlook list
+    copy:
+      content: "{{playbooks.stdout}}"
+      dest: "/tmp/playbooks_list.txt"
+    delegate_to: localhost

@@ -1,0 +1,42 @@
+---
+# file: bigip_as3_https.yml
+- name: Build HTTPS apps based on AS3 declaration
+  hosts: bigip
+  gather_facts: false
+  connection: local
+
+  vars_files:
+   - as3_https_vars.yml
+   
+  tasks:
+
+  - name: Build JSON payload
+    template: src=as3_https.j2 dest=as3_https.json
+
+  - name: Get an API token
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}/mgmt/shared/authn/login"
+      method: POST
+      body:
+        {
+          "username": "{{ bigip_username }}",
+          "password": "{{ bigip_password }}",
+           "loginProviderName": "tmos"
+        }
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: auth
+
+  - name: Send AS3 request
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}{{uri}}"
+      method: "{{method}}"
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      body_format: json
+      body: "{{lookup('file','as3_https.json')}}"
+      validate_certs: "{{ validate_certs }}"
+      status_code: 200
+    delegate_to: localhost
+

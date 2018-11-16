@@ -1,0 +1,14 @@
+---
+
+- name:  Manage device license
+  hosts: bigip
+
+  tasks:
+    - name: Renew device license
+      bigip_device_license:
+        license_key: T9799-67209-07405-48581-0448050
+        license_server: authem.f5net.com
+        state:
+          - present
+        accept_eula:
+      delegate_to: localhost

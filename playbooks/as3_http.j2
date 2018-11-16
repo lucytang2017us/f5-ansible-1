@@ -1,0 +1,54 @@
+{
+     "class": "AS3",
+     "action": "deploy",
+     "persist": true,
+     "declaration": {
+         "class": "ADC",
+         "schemaVersion": "3.0.0",
+         "id": "example-declaration-01",
+         "label": "Sample 1",
+         "remark": "Simple HTTP application with round robin pool",
+         "{{tenant_name}}": {
+             "class": "Tenant",
+             "defaultRouteDomain": 0,
+             "{{application_name}}": {
+                 "class": "Application",
+                 "template": "http",
+                 "serviceMain": {
+                   "class": "Service_HTTP",
+                   "virtualAddresses": [
+                     "{{virtual_address}}"
+                   ],
+                   "snat": "{{snat_value}}",
+                   "pool": "{{pool_name}}"
+                 },
+                 {% for virtual in virtual_servers %}
+                 "{{virtual.name}}": {
+                   "class": "Service_HTTP",
+                   "virtualAddresses": [
+                     "{{virtual.ip}}"
+                 ],
+                  "pool": "{{pool_name}}",
+                 },
+                 {% endfor %}
+                 "{{pool_name}}": {
+                     "class": "Pool",
+                     "monitors": [
+                         "http"
+                     ],
+                   "members": [
+                    {% for member in pool_members %}
+                      {
+                         "enable": {{member.status}},
+                         "servicePort": {{member.port}},
+                         "serverAddresses": [
+                              "{{member.ip}}"
+                         ]
+                      },
+                    {% endfor %}
+                    ]
+                 }
+             }
+         }
+     }
+ }

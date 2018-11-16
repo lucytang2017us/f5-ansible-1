@@ -1,0 +1,18 @@
+---
+
+- name: Fetch a qkview from the remote device
+  hosts: bigip
+
+  tasks:
+    - name: Fatch a qkview from the remote device
+      bigip_qkview:
+        exclude:
+          - audit
+          - secure
+        dest: /tmp/localhost.localdomain.qkview
+        provider:
+          password: "{{ bigip_password }}"
+          server: bigip
+          user: "{{ bigip_username }}"
+          validate_certs: "no"
+      delegate_to: localhost

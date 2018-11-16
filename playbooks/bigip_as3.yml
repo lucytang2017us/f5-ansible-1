@@ -1,0 +1,48 @@
+---
+# file: bigip_as3.yml
+- name: Send AS3 request as needed 
+  hosts: bigip
+  connection: local
+  strategy: debug
+
+  tasks:
+  - name: Get an API token
+    uri:
+      url: "https://10.1.1.243:{{ bigip_port }}/mgmt/shared/authn/login"
+      method: POST
+      body:
+        {
+          "username": "{{ bigip_username }}",
+          "password": "{{ bigip_password }}",
+           "loginProviderName": "tmos"
+        }
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: auth 
+
+  - name: Get transaction ID
+    uri:
+      url: "https://10.1.1.243:{{ bigip_port }}/mgmt/tm/transaction"
+      method: POST
+      body: |
+        {
+        }
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: transaction_id
+
+  - name: Check software status
+    uri:
+      url: "https://10.1.1.243:{{ bigip_port }}/mgmt/shared/appsvcs/declare"
+      method: PATCH
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      body_format: json
+      body: "{{lookup('file','files/as3_1.json')}}"
+      validate_certs: "{{ validate_certs }}"
+      status_code: 200
+    delegate_to: localhost

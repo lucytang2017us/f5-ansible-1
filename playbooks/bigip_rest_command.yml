@@ -1,0 +1,46 @@
+---
+# file: bigip_rest_command.yml
+- name: Send REST API command as needed 
+  hosts: bigip
+  connection: local
+  strategy: debug
+
+  tasks:
+  - name: Get an API token
+    uri:
+      url: "https://10.1.1.243:{{ bigip_port }}/mgmt/shared/authn/login"
+      method: POST
+      body:
+        {
+          "username": "{{ bigip_username }}",
+          "password": "{{ bigip_password }}",
+           "loginProviderName": "tmos"
+        }
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: auth 
+
+  - name: Get transaction ID
+    uri:
+      url: "https://10.1.1.243:{{ bigip_port }}/mgmt/tm/transaction"
+      method: POST
+      body: |
+        {
+        }
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: transaction_id
+
+  - name: Check software status
+    uri:
+      url: "https://10.1.1.243:{{ bigip_port }}/mgmt/tm/sys/software/status"
+      method: GET
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      status_code: 200
+      validate_certs: "{{ validate_certs }}"
+    register: status

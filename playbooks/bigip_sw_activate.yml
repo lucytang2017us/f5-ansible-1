@@ -1,0 +1,17 @@
+---
+
+- name: Activate image on the BIG-IP
+  hosts: bigip
+
+  tasks:
+    - name: Activate a BIG-IP image
+      bigip_software_install:
+        image: BIGIP-13.1.1.2-0.0.4.iso
+        volume: HD1.2
+        state: activated
+        provider:
+          password: "{{ bigip_password }}"
+          server: 10.1.1.243
+          user: "{{ bigip_username }}"
+          validate_certs: "no"
+      delegate_to: localhost

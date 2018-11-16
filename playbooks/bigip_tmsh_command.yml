@@ -1,0 +1,20 @@
+---
+# file: bigip_tmsh_command.yml
+- name: Send tmsh command as needed 
+  hosts: bigip
+  connection: local
+  strategy: debug
+
+  tasks:
+  - name: send tmsh command to device
+    bigip_command:
+      commands:
+        - show sys version
+        - list sys software
+      provider:
+        server: 10.1.1.243
+        server_port: "{{ bigip_port }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "no"
+    delegate_to: localhost
