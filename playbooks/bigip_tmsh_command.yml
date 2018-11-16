@@ -5,6 +5,7 @@
   connection: local
   strategy: debug
   gather_facts: false
+  become: yes
 
   tasks:
   - name: send tmsh command to device
