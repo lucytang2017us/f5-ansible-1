@@ -13,7 +13,7 @@
         dest: /tmp/localhost.localdomain.qkview
         provider:
           password: "{{ bigip_password }}"
-          server: bigip
+          server: 10.1.1.243
           user: "{{ bigip_username }}"
           validate_certs: "no"
       delegate_to: localhost
