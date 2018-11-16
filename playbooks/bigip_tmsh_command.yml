@@ -4,6 +4,7 @@
   hosts: bigip
   connection: local
   strategy: debug
+  gather_facts: false
 
   tasks:
   - name: send tmsh command to device
@@ -17,4 +18,3 @@
         user: "{{ bigip_username }}"
         password: "{{ bigip_password }}"
         validate_certs: "no"
-    delegate_to: localhost
