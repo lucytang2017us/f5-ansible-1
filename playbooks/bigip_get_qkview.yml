@@ -2,8 +2,7 @@
 
 - name: Fetch a qkview from the remote device
   hosts: bigip
-  gather_facts: false
-
+  
   tasks:
     - name: Fatch a qkview from the remote device
       bigip_qkview:
