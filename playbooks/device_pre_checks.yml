@@ -1,0 +1,20 @@
+---
+# file: device_pre_checks.yml
+- name: Pre SW/HG Upgrade Checking
+  hosts: bigip
+  connection: local
+  strategy: debug
+
+  tasks:
+  - name: Retrieve device facts
+    bigip_device_facts:
+      gather_subset:
+        - software-images
+        - software-volumes
+      provider:
+        server: 10.1.1.243
+        server_port: "{{ bigip_port }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "no"
+    delegate_to: localhost
