@@ -2,6 +2,7 @@
 
 - name: Fetch a qkview from the remote device
   hosts: bigip
+  connection: local
   gather_facts: false
   
   tasks:
