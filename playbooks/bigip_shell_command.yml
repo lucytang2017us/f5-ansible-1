@@ -7,7 +7,7 @@
 
   tasks:
   - name: run shell command
-    shell: "ls /tmp
+    shell: "ls /tmp"
     args:
        executable: /bin/bash 
     register: playbooks
