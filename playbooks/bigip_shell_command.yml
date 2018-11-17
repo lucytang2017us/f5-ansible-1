@@ -7,7 +7,7 @@
 
   tasks:
   - name: run shell command
-    shell: "ls /home/f5/ansible-projects/playbooks"
+    shell: "ls /tmp
     args:
        executable: /bin/bash 
     register: playbooks
