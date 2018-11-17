@@ -17,4 +17,4 @@
           server: 10.1.1.243
           user: "{{ bigip_username }}"
           validate_certs: "no"
-        delegate_to: localhost
+      delegate_to: localhost
