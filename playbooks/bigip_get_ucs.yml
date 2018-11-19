@@ -6,7 +6,7 @@
   tasks:
     - name: Fatch a ucs backup from the remote device
       bigip_ucs_fetch:
-        dest: /tmp/bigip.ucs
+        dest: /scratch/bigip.ucs
         password: "{{ bigip_password }}"
         server: 10.1.1.243
         user: "{{ bigip_username }}"
