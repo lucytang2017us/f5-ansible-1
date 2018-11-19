@@ -15,9 +15,9 @@ virtual_servers:
   ip: "10.168.98.79"
 
 pool_members:
-- name: "192.168.1.80" 
+- name: "192.168.1.100" 
   port: "80"
-  ip: "192.168.1.80"
+  ip: "192.168.1.100"
   status: true
 - name: "192.168.1.90"
   port: "80"
