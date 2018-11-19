@@ -9,7 +9,7 @@
         exclude:
           - audit
           - secure
-        dest: /tmp/localhost.localdomain.qkview
+        dest: /scratch/localhost.localdomain.qkview
         provider:
           password: "{{ bigip_password }}"
           server: 10.1.1.243
