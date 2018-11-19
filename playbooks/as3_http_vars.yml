@@ -1,25 +1,25 @@
 uri: /mgmt/shared/appsvcs/declare
 method: POST
 
-tenant_name: "Sample_03"
-application_name: "Customer3_App"
-pool_name: "Customer3_Pool"
+tenant_name: "Sample_04"
+application_name: "Customer4_App"
+pool_name: "Customer4_Pool"
 snat_value: "auto"
 
-virtual_address: "10.192.98.71"
+virtual_address: "10.192.98.74"
 hasMoreVirtuals: "1"
 virtual_servers:
-- name: "VS4"
-  ip: "10.168.98.68"
-- name: "VS5"
-  ip: "10.168.98.69"
+- name: "VS6"
+  ip: "10.168.98.78"
+- name: "VS7"
+  ip: "10.168.98.79"
 
 pool_members:
-- name: "192.168.1.70" 
-  port: "80"
-  ip: "192.168.1.70"
-  status: true
-- name: "192.168.1.80"
+- name: "192.168.1.80" 
   port: "80"
   ip: "192.168.1.80"
+  status: true
+- name: "192.168.1.90"
+  port: "80"
+  ip: "192.168.1.90"
   status: true
