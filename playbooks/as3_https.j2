@@ -40,7 +40,8 @@
                    "virtualAddresses": [
                      "{{virtual.ip}}"
                  ],
-                  "pool": "{{pool_name}}"
+                  "pool": "{{pool_name}}",
+                  "serverTLS": "webtls"
                  },
                  {% endfor %}
                  "{{pool_name}}": {
