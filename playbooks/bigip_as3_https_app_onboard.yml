@@ -11,7 +11,7 @@
 
   tasks:
     - name: parse csv and make vars file
-      command: "python {{script_file}} -i {{input_csv_file}} -o {{output_yml_file}}"
+      command: "python {{vars_script_file}} -i {{input_csv_file}} -o {{output_yml_file}}"
 
 - name: Build HTTPS apps based on AS3 declaration
   hosts: bigip
