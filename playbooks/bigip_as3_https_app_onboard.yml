@@ -19,7 +19,7 @@
   connection: local
 
   vars_files:
-    - "../files/inputs/https_app_onboard_vars.yml"
+    - "../files/https_app_onboard_vars.yml"
     - "{{input_var_file}}"
    
   tasks:
