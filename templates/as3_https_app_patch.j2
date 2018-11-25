@@ -1,0 +1,60 @@
+[
+   {
+       "op": "add",
+       "path": "/{{tenant_name}}/{{application_name}}",
+       "value": {
+                 "class": "Application",
+                 "template": "generic",
+                 {% for virtual in virtual_servers %}
+                 "{{virtual.name}}": {
+                   "class": "Service_HTTPS",
+                   "virtualAddresses": [
+                     "{{virtual.ip}}"
+                 ],
+                  "snat": "{{snat_value}}",
+                  "pool": "{{pool_name}}",
+                  "serverTLS": "{{client_ssl_pf}}",
+                  "policyEndpoint": {"bigip": "{{policy_vs}}"},
+                  "profileHTTP": { "bigip": "{{http_profile}}" },
+                  "profileTCP": { "bigip": "{{tcp_profile}}" },
+                  "persistenceMethods": [{"bigip": "{{persist_profile}}"}]
+                 },
+                 {% endfor %}
+                 "{{client_ssl_pf}}": {
+                     "class": "TLS_Server",
+                     "certificates": [{
+                        "certificate": "{{app_cert}}"
+                      }]
+                 },
+                 "{{app_cert}}": {
+                      "class": "Certificate",
+                      "certificate": {"bigip": "{{cert_name}}"},
+                      "privateKey": {"bigip": "{{cert_key}}"}, 
+                      "passphrase": {
+                         "ciphertext": "{{ssl_passphrase}}",
+                         "protected": "{{passphrase_protected}}"
+                      }
+                 },
+                 "{{pool_name}}": {
+                     "class": "Pool",
+                     "monitors": [
+                         "http"
+                     ],
+                     "loadBalancingMode": "{{lb_mode}}",
+                     "slowRampTime": {{slow_rptime}},
+                     "members": [
+                      {% for member in pool_members %}
+                      {
+                         "enable": {{member.status}},
+                         "servicePort": {{member.port}},
+                         "serverAddresses": [
+                              "{{member.ip}}"
+                         ]
+                      },
+                      {% endfor %}
+                    ]
+                 }
+             
+        } 
+     }
+ ]
