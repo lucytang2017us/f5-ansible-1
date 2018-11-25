@@ -1,0 +1,31 @@
+# Shared parameters
+application_name: "Customer7_App"
+virtual_network: "10.0.0.0/24"
+virtual_ips_count: "3"
+
+scripts_path: "/home/f5/ansible-projects/scripts"
+templates_path: "/home/f5/ansible-projects/templates/app_templates"
+input_files_path: "/home/f5/ansible-projects/files/inputs"
+vars_file_path: "/home/f5/ansible-projects/vars"
+json_file_path: "/home/f5/ansible-projects/files/backups"
+
+# Infoblox parameters
+#infoblox_url: "lab-int-grid.statestr.com/wapi/v2.6/"
+infoblox_url: "10.1.1.243/mgmt/tm/ltm/snatpool/"
+infoblox_login: "admin"
+infoblox_password: "admin"
+parser_script_file: "{{scripts_path}}/parser.py"
+convert_script_file: "{{scripts_path}}/converter.py"
+temp_json_file: "{{json_file_path}}/temp.json"
+orig_csv_file: "{{input_files_path}}/{{application_name}}.csv"
+upd_ccsv_file: "{{input_files_path}}/{{application_name}}_UD.csv"
+
+# Var file generation parameters
+vars_script_file: "{{scripts_path}}/vars_file_gen.py"
+input_csv_file: "{{input_files_path}}/{{application_name}}.csv"
+output_yml_file: "{{vars_file_path}}/{{application_name}}_onboard_vars.yml"
+
+# AS3 JSON file generation parameters 
+src_template_file: "{{templates_path}}/as3_https_app_onboard.j2"
+dest_json_file: "{{json_file_path}}/{{application_name}}_onboard.json"
+
