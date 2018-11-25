@@ -5,9 +5,9 @@ virtual_ips_count: "3"
 
 scripts_path: "../scripts"
 templates_path: "../templates"
-input_files_path: "./files"
+input_files_path: "../files"
 vars_file_path: "../vars"
-json_file_path: "./files/backups"
+json_file_path: "../files/backups"
 
 # Infoblox parameters
 #infoblox_url: "lab-int-grid.statestr.com/wapi/v2.6/"
