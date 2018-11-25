@@ -20,7 +20,7 @@
 
   vars_files:
     - "../files/https_app_onboard_vars.yml"
-    - "{{input_var_file}}"
+    - "{{output_yml_file}}"
    
   tasks:
 
