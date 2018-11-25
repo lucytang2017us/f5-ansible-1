@@ -1,6 +1,6 @@
 # Shared parameters
-application_name: "Customer7_App"
-action_type: "onboard"
+application_name: "Customer8_App"
+action_type: "patch"
 virtual_network: "10.0.0.0/24"
 virtual_ips_count: "3"
 
