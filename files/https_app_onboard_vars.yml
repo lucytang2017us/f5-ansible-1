@@ -3,11 +3,11 @@ application_name: "Customer7_App"
 virtual_network: "10.0.0.0/24"
 virtual_ips_count: "3"
 
-scripts_path: "/home/f5/ansible-projects/scripts"
-templates_path: "/home/f5/ansible-projects/templates/app_templates"
-input_files_path: "/home/f5/ansible-projects/files/inputs"
-vars_file_path: "/home/f5/ansible-projects/vars"
-json_file_path: "/home/f5/ansible-projects/files/backups"
+scripts_path: "../scripts"
+templates_path: "../templates"
+input_files_path: "./files"
+vars_file_path: "../vars"
+json_file_path: "./files/backups"
 
 # Infoblox parameters
 #infoblox_url: "lab-int-grid.statestr.com/wapi/v2.6/"
