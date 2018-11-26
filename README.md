@@ -1,6 +1,20 @@
 # f5-ansible
 Ansible playbooks using BIG-IP ansible modules & AS3 declarations
 
+Enviroment
+---------
+- Install AS3 rpm onto target BIGIP devices (>= v12.1.x)
+- Create sub directories in github repository: /files, /files/backups, /templates, /scripts, /vars, and /playbooks. Upload the sample files in the following examples to their corresponding sub directories.
+- Create Ansible Tower project to reference the source of the github repository. Create "bigip" and "localhost" Inventory groups. Add BIGIP devices as hosts into the "bigip" group, and add the Tower server managment IP into the "localhost" group.
+Define access credentials for the "bigip" group in the "Details", for instance:
+---
+bigip_username: "admin"
+bigip_password: "admin"
+bigip_port: "443"
+validate_certs: "no"
+
+- Create Ansible Tower job templates for the following scenarios, referencing the corresponding playbooks. Run the job and verify the results.
+
 HTTPs Application Onboard
 ---------
 - Create/upload a CSV input file under /files directory. The CSV file naming convention should be <application_name>_<action_type>.csv, for instance, /files/Customer7_App_onboard.csv, where "Customer7_App" is the application name, and "onboard" is the action type. This file contains all required parameters to configure the new application. Refer to the sample /files/Customer7_App_onboard.csv for content format of the CSV file.
