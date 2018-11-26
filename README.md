@@ -9,8 +9,11 @@ Enviroment
 Define access credentials for the "bigip" group in the "Details", for instance:
 
   bigip_username: "admin"
+  
   bigip_password: "admin"
+  
   bigip_port: "443"
+  
   validate_certs: "no"
 
 - Create Ansible Tower job templates for the following scenarios, referencing the corresponding playbooks. Run the job and verify the results.
