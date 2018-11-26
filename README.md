@@ -6,8 +6,9 @@ Enviroment
 - Install AS3 rpm onto target BIGIP devices (>= v12.1.x)
 - Create sub directories in github repository: /files, /files/backups, /templates, /scripts, /vars, and /playbooks. Upload the sample files in the following examples to their corresponding sub directories.
 - Create Ansible Tower project to reference the source of the github repository. Create "bigip" and "localhost" Inventory groups. Add BIGIP devices as hosts into the "bigip" group, and add the Tower server managment IP into the "localhost" group.
-Define access credentials for the "bigip" group in the "Details", for instance:
-
+Define access credentials for the "bigip" group in the "Details" tab, for instance:
+  ---
+  
   bigip_username: "admin"
   
   bigip_password: "admin"
@@ -16,7 +17,7 @@ Define access credentials for the "bigip" group in the "Details", for instance:
   
   validate_certs: "no"
 
-- Create Ansible Tower job templates for the following scenarios, referencing the corresponding playbooks. Run the job and verify the results.
+- Create Ansible Tower job templates for the following scenarios, referencing their corresponding playbooks. Run the job template and verify the results.
 
 HTTPs Application Onboard
 ---------
