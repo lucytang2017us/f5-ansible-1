@@ -3,7 +3,7 @@ Ansible playbooks using BIG-IP ansible modules & AS3 declarations
 
 Enviroment
 ---------
-- Install AS3 rpm onto target BIGIP devices (>= v12.1.x)
+- Download and install AS3 rpm onto target BIGIP devices (>= v12.1.x), https://github.com/F5Networks/f5-appsvcs-extension.
 - Create sub directories in github repository: /files, /files/backups, /templates, /scripts, /vars, and /playbooks. Upload the sample files in the following examples to their corresponding sub directories.
 - Create Ansible Tower project to reference the source of the github repository. Create "bigip" and "localhost" Inventory groups. Add BIGIP devices as hosts into the "bigip" group, and add the Tower server managment IP into the "localhost" group.
 Define access credentials for the "bigip" group in the "Details" tab, for instance:
