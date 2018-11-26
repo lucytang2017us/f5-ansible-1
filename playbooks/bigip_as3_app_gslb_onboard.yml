@@ -7,7 +7,7 @@
   gather_facts: false
 
   vars_files:
-    - "/home/f5/ansible-projects/files/gslb_app_onboard_vars.yml"
+    - "../files/gslb_app_onboard_vars.yml"
 
   tasks:
     - name: parse csv and make vars file
@@ -19,7 +19,7 @@
   connection: local
 
   vars_files:
-    - "/home/f5/ansible-projects/files/gslb_app_onboard_vars.yml"
+    - "../files/gslb_app_onboard_vars.yml"
     - "{{output_yml_file}}"
  
   tasks:
