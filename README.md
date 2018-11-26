@@ -8,15 +8,15 @@ HTTPs Application Onboard
 - Run the Tower job template with /playbooks/bigip_as3_https_app_onboard.yml, and verify the results.
 - The sample files used by this sample "onboard" playbook include: 
   Input:
-   /files/Customer7_App_onboard.csv
-   /files/https_app_onboard_vars.yml
-   /scripts/vars_file_gen.py (Don't modify unless new configuration objects to be declared in the Jinja template)
-   /templates/as3_https_app_onboard.j2 (Don't modify unless new configuration objects to be declared in the Jinja template)
-   /playbooks/bigip_as3_https_app_onboard.yml (Don't modify)
+   - /files/Customer7_App_onboard.csv
+   - /files/https_app_onboard_vars.yml
+   - /scripts/vars_file_gen.py (Don't modify unless new configuration objects to be declared in the Jinja template)
+   - /templates/as3_https_app_onboard.j2 (Don't modify unless new configuration objects to be declared in the Jinja template)
+   - /playbooks/bigip_as3_https_app_onboard.yml (Don't modify)
    
    Output:
-   /vars/ustomer7_App_onboard_vars.yml  (Output vars file, used with Jinja template to create Json body for AS3 request)
-   /files/backups/Customer7_App_onboard.json (Output Json body for AS3 request)
+   - /vars/ustomer7_App_onboard_vars.yml  (Output vars file, used with Jinja template to create Json body for AS3 request)
+   - /files/backups/Customer7_App_onboard.json (Output Json body for AS3 request)
    
    
 
