@@ -1,5 +1,5 @@
 # f5-ansible
-Ansible playbooks using BIG-IP ansible modules & AS3 declarations
+Onboarding new HTTPs and GSLB applications with Ansible playbooks, using BIG-IP AS3 declarations.
 
 Enviroment
 ---------
