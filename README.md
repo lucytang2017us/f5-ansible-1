@@ -18,7 +18,9 @@ Define access credentials for the "bigip" group in the "Details" tab, for instan
 
 - Create Ansible Tower job templates for the following scenarios, referencing their corresponding playbooks. Run the job templates and verify the results.
 
-Note: With clustered devices, including one device in the "bigip" group as target device of the playbook, the configurations could be auto/manual synced to the other devices.
+Note: 
+- With clustered devices, including one device in the "bigip" group as target device of the playbook, the configurations could be auto/manual synced to the other devices. 
+- DO NOT make manual modifications to the applications and components created by AS3 declarations. Further modification should via AS3 "patch" procedure.
 
 HTTPs Application Onboard
 ---------
@@ -53,6 +55,8 @@ HTTPs Application Patch
    Output:
    - /vars/Customer8_App_patch_vars.yml  (Output vars file, used with Jinja template to create Json body for AS3 request)
    - /files/backups/Customer8_App_patch.json (Output, used as Json body for AS3 request)
+   
+   Notes: This patch playbook can also be used to modify existing application originally created by AS3. 
 
 GSLB App Onboard
 ------------
