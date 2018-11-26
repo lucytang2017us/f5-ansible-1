@@ -1,0 +1,74 @@
+{
+    "class": "ADC",
+    "schemaVersion": "3.6.0",
+    "id": "GSLB_Sample",
+    "{{tenant_name}}": {
+        "class": "Tenant",
+        "Application": {
+            "class": "Application",
+            "template": "generic",
+            "{{gslb_domain}}": {
+                "class": "GSLB_Domain",
+                "domainName": "{{domain_name}}",
+                "aliases": [
+                              "{{domain_aliase}}" ],
+                "resourceRecordType": "{{rr_type}}",
+                "poolLbMode": "{{wideip_lb_mode}}",
+                "pools": [
+                              { "use": "{{gslb_pool}}" }
+                ]
+            },
+            "{{gslb_pool}}": {
+               "class": "GSLB_Pool",
+                "enabled": false,
+                "lbModePreferred": "{{gslb_pool_lb_prefered}}",
+                "lbModeAlternate": "{{gslb_pool_lb_alternate}}",
+                "lbModeFallback": "{{gslb_pool_lb_fallback}}",
+                "manualResumeEnabled": true,
+                "verifyMemberEnabled": false,
+                "qosHitRatio": 10,
+                "qosHops": 11,
+                "qosKbps": 8,
+                "qosLinkCapacity": 35,
+                "qosPacketRate": 5,
+                "qosRoundTripTime": 75,
+                "qosTopology": 3,
+                "qosVirtualServerCapacity": 2,
+                "qosVirtualServerScore": 1,
+                "members": [
+                    {
+                        "ratio": {{primary_ratio}},
+                        "server": {
+                            "bigip": "{{primary_server}}"
+                        },
+                        "virtualServer": "{{primary_vs}}"
+                    },
+                    {
+                        "ratio": {{secondary_ratio}},
+                        "server": {
+                            "bigip": "{{secondary_server}}"
+                        },
+                        "virtualServer": "{{secondary_vs}}"
+                    }
+                ],
+                "bpsLimit": 5,
+                "bpsLimitEnabled": true,
+                "ppsLimit": 4,
+                "ppsLimitEnabled": true,
+                "connectionsLimit": 3,
+                "connectionsLimitEnabled": true,
+                "maxAnswersReturned": 10,
+                "monitors": [
+                {% for monitor in gslb_pool_monitors %}
+                    {
+                        "bigip": "{{monitor.name}}"
+                    },
+                {% endfor %}
+                ],
+                "resourceRecordType": "{{rr_type}}",
+                "fallbackIP": "{{fallback_ip_address}}"
+            }
+        }
+    }
+}
+
