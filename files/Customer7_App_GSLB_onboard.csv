@@ -1,0 +1,2 @@
+tenant_name,application_name,shared_path,gslb_domain,domain_name,domain_aliase,rr_type,wideip_lb_mode,gslb_pool_lb_prefered,gslb_pool_lb_alternate,gslb_pool_lb_fallback,primary_ratio,primary_server,primary_vs,secondary_ratio,secondary_server,secondary_vs,gslb_pool_monitors,fallback_ip_address
+App_GSLB_Domain,Customer7_App_GSLB,Common,Customer7_App_GSLB_Domain,app1.example.com,another.example*,A,round-robin,round-robin,ratio,ratio,10,server3,vs_ny1,10,server4,vs_ny2,"http,https",10.1.10.200

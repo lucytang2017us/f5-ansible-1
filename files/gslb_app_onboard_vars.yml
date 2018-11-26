@@ -1,0 +1,19 @@
+# Shared parameters
+application_name: "Customer7_App_GSLB"
+action_type: "onboard"
+
+scripts_path: "/home/f5/ansible-projects/scripts"
+templates_path: "/home/f5/ansible-projects/templates"
+input_files_path: "/home/f5/ansible-projects/files"
+vars_file_path: "/home/f5/ansible-projects/vars"
+json_file_path: "/home/f5/ansible-projects/files/backups"
+
+# Var file generation parameters
+vars_script_file: "{{scripts_path}}/vars_file_gen_gslb.py"
+input_csv_file: "{{input_files_path}}/{{application_name}}_{{action_type}}.csv"
+output_yml_file: "{{vars_file_path}}/{{application_name}}_{{action_type}}_vars.yml"
+
+# AS3 JSON file generation parameters 
+src_template_file: "{{templates_path}}/as3_gslb_app_{{action_type}}.j2"
+dest_json_file: "{{json_file_path}}/{{application_name}}_{{action_type}}.json"
+
