@@ -7,11 +7,11 @@ Enviroment
 - Create sub directories in github repository: /files, /files/backups, /templates, /scripts, /vars, and /playbooks. Upload the sample files in the following examples to their corresponding sub directories.
 - Create Ansible Tower project to reference the source of the github repository. Create "bigip" and "localhost" Inventory groups. Add BIGIP devices as hosts into the "bigip" group, and add the Tower server managment IP into the "localhost" group.
 Define access credentials for the "bigip" group in the "Details", for instance:
----
-bigip_username: "admin"
-bigip_password: "admin"
-bigip_port: "443"
-validate_certs: "no"
+
+  bigip_username: "admin"
+  bigip_password: "admin"
+  bigip_port: "443"
+  validate_certs: "no"
 
 - Create Ansible Tower job templates for the following scenarios, referencing the corresponding playbooks. Run the job and verify the results.
 
