@@ -16,7 +16,9 @@ Define access credentials for the "bigip" group in the "Details" tab, for instan
   
   validate_certs: "no"
 
-- Create Ansible Tower job templates for the following scenarios, referencing their corresponding playbooks. Run the job template and verify the results.
+- Create Ansible Tower job templates for the following scenarios, referencing their corresponding playbooks. Run the job templates and verify the results.
+
+Note: With clustered devices, including one device in the "bigip" group as target device of the playbook, the configurations could be auto/manual synced to the other devices.
 
 HTTPs Application Onboard
 ---------
