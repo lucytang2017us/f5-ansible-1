@@ -23,7 +23,7 @@ upd_ccsv_file: "{{input_files_path}}/{{application_name}}_UD.csv"
 
 # Var file generation parameters
 vars_script_file: "{{scripts_path}}/vars_file_gen.py"
-input_csv_file: "{{input_files_path}}/{{application_name}}.csv"
+input_csv_file: "{{input_files_path}}/{{application_name}}_{{action_type}}.csv"
 output_yml_file: "{{vars_file_path}}/{{application_name}}_{{action_type}}_vars.yml"
 
 # AS3 JSON file generation parameters 
