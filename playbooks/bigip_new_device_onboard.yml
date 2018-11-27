@@ -74,6 +74,15 @@
     tags: provision
     delegate_to: localhost
 
+  - name: Wait a maximum of 300 seconds for BIG-IP to be ready to take configuration
+    bigip_wait:
+     timeout: 300
+     server: "{{ inventory_hostname }}"
+     user: "{{ bigip_username }}"
+     password: "{{ bigip_password }}"
+     validate_certs: "{{ validate_certs }}"
+    delegate_to: localhost
+
   - name: Configure VLANs on the BIG-IP
     bigip_vlan:
      server: "{{ inventory_hostname }}"
