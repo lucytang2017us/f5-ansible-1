@@ -60,6 +60,7 @@
       provider: "{{ provider }}"
       module: "{{ item.name }}"
       level: "{{ item.level }}"
+      state: "{{ item.state }}"
     with_items: "{{ module_provisioning }}"
     tags: provision
     delegate_to: localhost
