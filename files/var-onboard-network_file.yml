@@ -1,13 +1,16 @@
-username: admin
-password: admin
 
-banner_text: "--------Welcome to Onboarding BIGIP----------"
+banner_text: "WARNING MESSAGE. You are accessing the State Street corporation (SSC) enterprise network. 
+        All equipment, systems, services and software are to be used for SSC business purposes only. 
+        Unauthorized access, use, or distribution is in violation of SSC policy and may be a violation of state and/or federal statute. 
+        SSC reserves the right to audit all transactions and data (including e-mail messages), for any purpose, sent over this medium. 
+        Only SSC approved and licensed software that has been scanned for viruses is permitted on this network."
 
 hostname: 'ansibleManaged-bigip.local'
 
 ntp_servers:
  - '172.27.1.1'
  - '172.27.1.2'
+time_zone: "America/New_York"
 
 dns_servers:
  - '8.8.8.8'
@@ -44,5 +47,14 @@ selfip_information:
    allow_service: 'default'
 
 module_provisioning:
- - name: 'asm'
+ - name: 'ltm'
    level: 'nominal'
+ - name: 'gtm'
+   level: 'nominal'
+   
+tmsh_commands:
+ - 'create ltm persistence source-addr ssc-src_addr_1500 timeout 1500'
+ - 'create ltm profile tcp ssc-tcp-3600 idle-timeout 3600'
+ - 'create ltm profile http http-xff insert-xforwarded-for enabled'
+ - 'create ltm profile client-ssl standard_ssc-clientssl ciphers DEFAULT:!SSLv3:!TLSv1:!RC4:@STRENGTH'
+ 
