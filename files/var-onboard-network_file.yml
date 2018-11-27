@@ -1,9 +1,9 @@
 
-banner_text: "WARNING MESSAGE. You are accessing the State Street corporation (SSC) enterprise network. 
+banner_text: 'WARNING MESSAGE. You are accessing the State Street corporation (SSC) enterprise network. 
         All equipment, systems, services and software are to be used for SSC business purposes only. 
         Unauthorized access, use, or distribution is in violation of SSC policy and may be a violation of state and/or federal statute. 
         SSC reserves the right to audit all transactions and data (including e-mail messages), for any purpose, sent over this medium. 
-        Only SSC approved and licensed software that has been scanned for viruses is permitted on this network."
+        Only SSC approved and licensed software that has been scanned for viruses is permitted on this network.'
 
 hostname: 'bigipA.f5demo.com'
 
@@ -12,7 +12,7 @@ ntp_servers:
  - '155.108.87.246'
  - '161.194.71.246'
  - '10.20.96.246'
-time_zone: "America/New_York"
+time_zone: 'America/New_York'
 
 dns_servers:
  - '8.8.8.8'
