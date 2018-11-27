@@ -14,6 +14,7 @@
         state: "present"
         console_timeout: 1200
         banner_text: "{{ banner_text }}"
+        server: "{{ inventory_hostname }}"
         user: "{{ bigip_username }}"
         password: "{{ bigip_password }}"
         validate_certs: "{{ validate_certs }}"
@@ -97,4 +98,13 @@
      vlan: "{{ item.vlan }}"
      allow_service: "{{item.allow_service}}"
     with_items: "{{ selfip_information }}"
+    delegate_to: localhost
+    
+  - name: Create standard LTM profiles
+    bigip_command:
+        server: "{{ inventory_hostname }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "{{ validate_certs }}"
+        commands: "{{ tmsh_commands }}"
     delegate_to: localhost
