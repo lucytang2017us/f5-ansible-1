@@ -1,5 +1,5 @@
 ---
-- name: Onboarding BIG-IP
+- name: Onboarding New BIG-IP Device
   hosts: bigip
   gather_facts: false
   
@@ -7,13 +7,25 @@
     - vars_onboard_device_file.yml
 
   tasks:
-
+  
+  - name: Manage Global Settings
+    bigip_sys_global:
+        gui_setup: "off"        
+        state: "present"
+        console_timeout: 1200
+        banner_text: "{{ banner_text }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "{{ validate_certs }}"
+    delegate_to: localhost
+    
   - name: Configure NTP server on BIG-IP
     bigip_device_ntp:
       server: "{{ inventory_hostname }}"
       user: "{{ bigip_username }}"
       password: "{{ bigip_password }}"
       ntp_servers: "{{ ntp_servers }}"
+      timezone: "{{time_zone}}"
       validate_certs: "{{ validate_certs }}"
     delegate_to: localhost
 
@@ -33,6 +45,7 @@
       password: "{{ bigip_password }}"
       banner: "enabled"
       banner_text: " {{ banner_text }}"
+      inactivity_timeout: 1200
       validate_certs: "{{ validate_certs }}"
     delegate_to: localhost
 
