@@ -16,7 +16,6 @@
         user: "{{ bigip_username }}"
         password: "{{ bigip_password }}"
         validate_certs: "{{ validate_certs }}"
-        transport: "{{ provider_transport }}"
       
   - name: Manage Global Settings
     bigip_sys_global:
