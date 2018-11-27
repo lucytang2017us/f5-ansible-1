@@ -8,65 +8,57 @@
 
   tasks:
   
+  - name: Setup provider
+    set_fact:
+      provider:
+        server: "{{ inventory_hostname }}"
+        server_port: "{{ bigip_port }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "{{ validate_certs }}"
+        transport: "{{ provider_transport }}"
+      
   - name: Manage Global Settings
     bigip_sys_global:
         gui_setup: "off"        
         state: "present"
         console_timeout: 1200
         banner_text: "{{ banner_text }}"
-        server: "{{ inventory_hostname }}"
-        user: "{{ bigip_username }}"
-        password: "{{ bigip_password }}"
-        validate_certs: "{{ validate_certs }}"
+        provider: "{{ provider }}"
     delegate_to: localhost
     
   - name: Configure NTP server on BIG-IP
     bigip_device_ntp:
-      server: "{{ inventory_hostname }}"
-      user: "{{ bigip_username }}"
-      password: "{{ bigip_password }}"
       ntp_servers: "{{ ntp_servers }}"
       timezone: "{{time_zone}}"
-      validate_certs: "{{ validate_certs }}"
+      provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Configure BIG-IP hostname
     bigip_hostname:
-      server: "{{ inventory_hostname }}"
-      user: "{{ bigip_username }}"
-      password: "{{ bigip_password }}"
-      validate_certs: "{{ validate_certs }}"
       hostname: "{{ hostname }}"
+      provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Manage SSHD setting on BIG-IP
     bigip_device_sshd:
-      server: "{{ inventory_hostname }}"
-      user: "{{ bigip_username }}"
-      password: "{{ bigip_password }}"
       banner: "enabled"
       banner_text: " {{ banner_text }}"
       inactivity_timeout: 1200
-      validate_certs: "{{ validate_certs }}"
+      provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Manage BIG-IP DNS settings
     bigip_device_dns:
-     server: "{{ inventory_hostname }}"
-     user: "{{ bigip_username }}"
-     password: "{{ bigip_password }}"
      name_servers: "{{ dns_servers }}"
      search: "{{ dns_search_domains }}"
      ip_version: "{{ ip_version }}"
-     validate_certs: "{{ validate_certs }}"
+     provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Provision BIG-IP with appropriate modules
     bigip_provision:
-      server: "{{ inventory_hostname }}"
-      user: "{{ bigip_username }}"
-      password: "{{ bigip_password }}"
-      validate_certs: "{{ validate_certs }}"
+      provider: "{{ provider }}"
       module: "{{ item.name }}"
       level: "{{ item.level }}"
     with_items: "{{ module_provisioning }}"
@@ -75,19 +67,13 @@
 
   - name: Wait a maximum of 300 seconds for BIG-IP to be ready to take configuration
     bigip_wait:
-     timeout: 300
-     server: "{{ inventory_hostname }}"
-     user: "{{ bigip_username }}"
-     password: "{{ bigip_password }}"
-     validate_certs: "{{ validate_certs }}"
+      timeout: 300
+      provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Configure VLANs on the BIG-IP
     bigip_vlan:
-     server: "{{ inventory_hostname }}"
-     user: "{{ bigip_username }}"
-     password: "{{ bigip_password }}"
-     validate_certs: "{{ validate_certs }}"
+     provider: "{{ provider }}"
      name: "{{ item.name }}"
      tag: "{{ item.tag }}"
      tagged_interface: "{{ item.interface }}"
@@ -96,10 +82,7 @@
 
   - name: Configure SELF-IPs on the BIG-IP
     bigip_selfip:
-     server: "{{ inventory_hostname }}"
-     user: "{{ bigip_username }}"
-     password: "{{ bigip_password }}"
-     validate_certs: "{{ validate_certs }}"
+     provider: "{{ provider }}"
      name: "{{ item.name }}"
      address: "{{ item.address }}"
      netmask: "{{ item.netmask }}"
@@ -110,9 +93,6 @@
     
   - name: Create standard LTM profiles
     bigip_command:
-        server: "{{ inventory_hostname }}"
-        user: "{{ bigip_username }}"
-        password: "{{ bigip_password }}"
-        validate_certs: "{{ validate_certs }}"
-        commands: "{{ tmsh_commands }}"
+      provider: "{{ provider }}"
+      commands: "{{ tmsh_commands }}"
     delegate_to: localhost
