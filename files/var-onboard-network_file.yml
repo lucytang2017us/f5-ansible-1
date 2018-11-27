@@ -34,12 +34,12 @@ vlan_information:
 
 selfip_information:
  - name: 'External-SelfIP'
-   address: '10.168.68.5'
+   address: '10.168.68.15'
    netmask: '255.255.255.0'
    vlan: 'External'
    allow_service: 'default'
  - name: 'Internal-SelfIP'
-   address: '192.168.68.5'
+   address: '192.168.68.15'
    netmask: '255.255.255.0'
    vlan: 'Internal'
    allow_service: 'default'
