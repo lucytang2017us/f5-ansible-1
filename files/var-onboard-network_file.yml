@@ -47,7 +47,7 @@ selfip_information:
 module_provisioning:
  - name: 'ltm'
    level: 'nominal'
- - name: 'asm'
+ - name: 'apm'
    level: 'nominal'
    
 tmsh_commands:
