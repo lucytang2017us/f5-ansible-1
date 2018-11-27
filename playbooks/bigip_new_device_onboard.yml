@@ -57,7 +57,6 @@
      password: "{{ bigip_password }}"
      name_servers: "{{ dns_servers }}"
      search: "{{ dns_search_domains }}"
-     forwarders: "{{ bind_servers }}"
      ip_version: "{{ ip_version }}"
      validate_certs: "{{ validate_certs }}"
     delegate_to: localhost
