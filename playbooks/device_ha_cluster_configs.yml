@@ -3,16 +3,9 @@
   hosts: localhost
   gather_facts: false
 
-  vars:
-   bigip1_ip: 10.192.73.XXX
-   bigip2_ip: 10.192.73.XXX
-   bigip1_old_name: bigip-ha1
-   bigip1_new_name: bigipnew-ha1
-   bigip2_old_name: bigip-ha2
-   bigip2_new_name: bigipnew-ha2
-   bigip1_selfip: 1.1.1.4
-   bigip2_selfip: 1.1.1.5
-   ha_vlan: OOB_HA
+  vars_files:
+    - "../files/vars_config_paired_devices.yml"
+  
 
   tasks:
   - name: Configure SELF-IP for HA on the BIG-IP1
