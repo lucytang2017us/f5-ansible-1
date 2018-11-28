@@ -18,10 +18,17 @@ Define access credentials for the "bigip" group in the "Details" tab, for instan
 
 - Create Ansible Tower job templates for the following scenarios, referencing their corresponding playbooks. Run the job templates and verify the results.
 
-Note: 
+Notes: 
+- In Tower multiple projects with different settings (inventory, template, etc) could be created for convinionce. 
 - With clustered devices, including one device in the "bigip" group as target device of the playbook, the configurations could be auto/manual synced to the other devices. 
 - DO NOT make manual modifications to the applications and components created by AS3 declarations. Further modification should be just via AS3 "patch" procedure.
 - In case using Infoblox playboo to allocate virtual server ips, upload the /files/infoblox.py Ansible module file onto the Ansible Controller/Tower box, under the Ansible modules folder. The actual path TBD, based on the Ansible installation.
+
+New BIG-IP Device Basic Configurations
+---------
+- The minimum requirements before perform basic configurations are: The device has management IP and licensed.
+- Modify the /files/var-onboard-network_file.yml file for the device basic configuration parameters.
+- Run the /playbooks/
 
 HTTPs Application Onboard
 ---------
