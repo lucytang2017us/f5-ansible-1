@@ -27,8 +27,11 @@ Notes:
 New BIG-IP Device Basic Configurations
 ---------
 - The minimum requirements before perform basic configurations are: The device has management IP and licensed.
-- Modify the /files/var-onboard-network_file.yml file for the device basic configuration parameters.
-- Run the /playbooks/
+- Edit the /files/var-onboard-network_file.yml file for the device basic configuration parameters.
+- Run the /playbooks/bigip_new_device_basic_configs.yml playbook to perform basic device configurations on the new devices.
+
+Notes:
+- This is just a sample playbook, which content varies based on device appliance types (viprion, standalone, clustered, etc).
 
 HTTPs Application Onboard
 ---------
