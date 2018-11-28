@@ -20,7 +20,8 @@ Define access credentials for the "bigip" group in the "Details" tab, for instan
 
 Note: 
 - With clustered devices, including one device in the "bigip" group as target device of the playbook, the configurations could be auto/manual synced to the other devices. 
-- DO NOT make manual modifications to the applications and components created by AS3 declarations. Further modification should via AS3 "patch" procedure.
+- DO NOT make manual modifications to the applications and components created by AS3 declarations. Further modification should be just via AS3 "patch" procedure.
+- In case using Infoblox playboo to allocate virtual server ips, upload the /files/infoblox.py Ansible module file onto the Ansible Controller/Tower box, under the Ansible modules folder. The actual path TBD, based on the Ansible installation.
 
 HTTPs Application Onboard
 ---------
