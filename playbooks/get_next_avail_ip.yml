@@ -36,11 +36,11 @@
         provider: "{{ provider }}"
         action: "create_ptr_record"
         name: "{{ application_name }}"
-        address: "{{ next_avail_addr['json']['results']['ips'] }}"
+        address: "{{ next_avail_addr.json.results.ips[0] }}"
         comment: "{{ ptr_comment }}"
       
     - name: Get ptr for the available ip
       infoblox:
         provider: "{{ provider }}"
         action: "get_ptr_record"
-        address: "{{ next_avail_addr['json']['results']['ips'] }}"
+        address: "{{ next_avail_addr.json.results.ips[0] }}"
