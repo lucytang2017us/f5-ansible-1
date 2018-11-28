@@ -1,0 +1,37 @@
+---
+# file: bigip_as3_clean_tenant.yml
+- name: Clean up an entire tenant
+  hosts: bigip
+  gather_facts: false
+  connection: local
+ 
+  vars:
+    tenant_name: "App_Billing_Domain" 
+
+  tasks:
+
+  - name: Get an API token
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}/mgmt/shared/authn/login"
+      method: POST
+      body:
+        {
+          "username": "{{ bigip_username }}",
+          "password": "{{ bigip_password }}",
+           "loginProviderName": "tmos"
+        }
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: auth
+
+  - name: Send AS3 request
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}/mgmt/shared/appsvcs/declare/{{tenant_name}}"
+      method: "DELETE"
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      validate_certs: "{{ validate_certs }}"
+      status_code: 200
+    delegate_to: localhost
+
