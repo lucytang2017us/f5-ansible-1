@@ -75,3 +75,9 @@ GSLB App Onboard
    - /vars/Customer7_App_GSLB_onboard_vars.yml  (Output vars file, used with Jinja template to create Json body for AS3 request)
    - /files/backups/Customer7_App_GSLB_onboard.json (Output, used as Json body for AS3 request)
    
+ Utils
+------------
+- To remove an entire tenant including applications, use the bigip_as3_clean_tenant.yml util playbook. Edit the "tenant_name" value inside the playbook file.
+- To remove an exiting application from its tenant, use the bigip_as3_clean_app.yml and the as3_clean_app.json. Edit the "path" inside the json before running the playbook.
+
+   
