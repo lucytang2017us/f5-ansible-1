@@ -39,6 +39,7 @@ HTTPs Application Onboard
 - Edit the /files/https_app_onboard_vars.yml input file as needed. This is the top vars file including all input/output files pathes used by the playbooks.
 - Run the Tower job template with /playbooks/bigip_as3_https_app_onboard.yml, and verify the results.
 - The sample files used by this sample "onboard" playbook include: 
+  
   Input:
    - /files/Customer7_App_onboard.csv
    - /files/https_app_onboard_vars.yml
@@ -56,6 +57,7 @@ HTTPs Application Patch
 - Edit the /files/https_app_onboard_vars.yml input file as needed. This is the top vars file including all input/output files pathes used by the playbooks.
 - Run the Tower job template with /playbooks/bigip_as3_https_app_patch.yml, and verify the results.
 - The sample files used by this sample "patch" playbook include: 
+  
   Input:
    - /files/Customer8_App_patch.csv
    - /files/https_app_onboard_vars.yml
@@ -75,6 +77,7 @@ GSLB App Onboard
 - Edit the /files/gslb_app_onboard_vars.yml input file as needed. This is the top vars file including all input/output files pathes used by the playbooks.
 - Run the Tower job template with /playbooks/bigip_as3_app_gslb_onboard.yml, and verify the results.
 - The sample files used by this sample "patch" playbook include: 
+  
   Input:
    - /files/Customer7_App_GSLB_onboard.csv
    - /files/gslb_app_onboard_vars.yml
