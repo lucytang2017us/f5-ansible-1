@@ -1,0 +1,46 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  vars_files:
+    - "../files/https_app_onboard_vars.yml"
+    
+  tasks:
+  
+    - name: Setup provider
+      set_fact:
+        provider:
+          server: "{{ inventory_hostname }}"
+          username: "{{ infoblox_username }}"
+          password: "{{ infoblox_password }}"
+        
+    - name: Get network reference
+      infoblox:
+        provider: "{{ provider }}"
+        action: "get_network"
+        network: "{{ virtual_network }}"
+      register: network_ref
+
+    - name: Get next available ip
+      infoblox:
+        provider: "{{ provider }}"
+        action: "get_next_available_ip"
+        network: "{{ virtual_network }}"
+        start_addr: "{{ start_address }}"
+        end_addr: "{{ end_address }}" 
+      register: next_avail_addr
+      
+    - name: Create ptr for the available ip
+      infoblox:
+        provider: "{{ provider }}"
+        action: "create_ptr_record"
+        name: "{{ application_name }}"
+        address: "{{ next_avail_addr['json']['results']['ips'] }}"
+        comment: "{{ ptr_comment }}"
+      
+    - name: Get ptr for the available ip
+      infoblox:
+        provider: "{{ provider }}"
+        action: "get_ptr_record"
+        address: "{{ next_avail_addr['json']['results']['ips'] }}"
