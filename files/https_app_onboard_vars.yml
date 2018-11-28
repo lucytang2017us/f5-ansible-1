@@ -1,8 +1,6 @@
 # Shared parameters
-application_name: "Customer8_App"
-action_type: "patch"
-virtual_network: "10.0.0.0/24"
-virtual_ips_count: "3"
+application_name: "Customer7_App"
+action_type: "onboard"
 
 scripts_path: "../scripts"
 templates_path: "../templates"
@@ -11,15 +9,10 @@ vars_file_path: "../vars"
 json_file_path: "../files/backups"
 
 # Infoblox parameters
-#infoblox_url: "lab-int-grid.statestr.com/wapi/v2.6/"
-infoblox_url: "10.1.1.243/mgmt/tm/ltm/snatpool/"
-infoblox_login: "admin"
-infoblox_password: "admin"
-parser_script_file: "{{scripts_path}}/parser.py"
-convert_script_file: "{{scripts_path}}/converter.py"
-temp_json_file: "{{json_file_path}}/temp.json"
-orig_csv_file: "{{input_files_path}}/{{application_name}}.csv"
-upd_ccsv_file: "{{input_files_path}}/{{application_name}}_UD.csv"
+virtual_network: "10.0.0.0/25"
+start_address: "10.0.0.1"
+end_address: "10.0.0.100"
+ptr_comment: "PTR record for {{application_name}}"
 
 # Var file generation parameters
 vars_script_file: "{{scripts_path}}/vars_file_gen.py"
