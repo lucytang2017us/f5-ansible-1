@@ -60,16 +60,6 @@
       provider: "{{ provider }}"
     delegate_to: localhost
 
-  - name: Configure VLANs on the BIG-IP
-    bigip_vlan:
-     provider: "{{ provider }}"
-     name: "{{ item.name }}"
-     tag: "{{ item.tag }}"
-     tagged_interface: "{{ item.interface }}"
-     state: "{{ item.state }}"
-    with_items: "{{ vlan_information }}"
-    delegate_to: localhost
-
   - name: Configure SELF-IPs on the BIG-IP
     bigip_selfip:
      provider: "{{ provider }}"
@@ -80,6 +70,16 @@
      allow_service: "{{item.allow_service}}"
      state: "{{ item.state }}"
     with_items: "{{ selfip_information }}"
+    delegate_to: localhost
+    
+  - name: Configure VLANs on the BIG-IP
+    bigip_vlan:
+     provider: "{{ provider }}"
+     name: "{{ item.name }}"
+     tag: "{{ item.tag }}"
+     tagged_interface: "{{ item.interface }}"
+     state: "{{ item.state }}"
+    with_items: "{{ vlan_information }}"
     delegate_to: localhost
     
   - name: Create standard LTM profiles
