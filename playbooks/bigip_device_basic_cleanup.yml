@@ -1,0 +1,98 @@
+---
+- name: Onboarding New BIG-IP Device
+  hosts: bigip
+  gather_facts: false
+  
+  vars_files:
+    - "../files/var-onboard-network_file.yml"
+
+  tasks:
+  
+  - name: Setup provider
+    set_fact:
+      provider:
+        server: "{{ inventory_hostname }}"
+        server_port: "{{ bigip_port }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "{{ validate_certs }}"
+      
+  - name: Manage Global Settings
+    bigip_sys_global:
+        gui_setup: "off"        
+        state: "present"
+        console_timeout: 1200
+        banner_text: "{{ banner_text }}"
+        provider: "{{ provider }}"
+    delegate_to: localhost
+    
+  - name: Configure NTP server on BIG-IP
+    bigip_device_ntp:
+      ntp_servers: "{{ ntp_servers }}"
+      timezone: "{{time_zone}}"
+      provider: "{{ provider }}"
+    delegate_to: localhost
+
+  - name: Configure BIG-IP hostname
+    bigip_hostname:
+      hostname: "{{ hostname }}"
+      provider: "{{ provider }}"
+    delegate_to: localhost
+
+  - name: Manage SSHD setting on BIG-IP
+    bigip_device_sshd:
+      banner: "enabled"
+      banner_text: " {{ banner_text }}"
+      inactivity_timeout: 1200
+      provider: "{{ provider }}"
+    delegate_to: localhost
+
+  - name: Manage BIG-IP DNS settings
+    bigip_device_dns:
+     name_servers: "{{ dns_servers }}"
+     search: "{{ dns_search_domains }}"
+     ip_version: "{{ ip_version }}"
+     provider: "{{ provider }}"
+    delegate_to: localhost
+
+  - name: Provision BIG-IP with appropriate modules
+    bigip_provision:
+      provider: "{{ provider }}"
+      module: "{{ item.name }}"
+      level: "{{ item.level }}"
+      state: "{{ item.state }}"
+    with_items: "{{ module_provisioning }}"
+    tags: provision
+    delegate_to: localhost
+
+  - name: Wait a maximum of 300 seconds for BIG-IP to be ready to take configuration
+    bigip_wait:
+      timeout: 300
+      provider: "{{ provider }}"
+    delegate_to: localhost
+
+  - name: Configure VLANs on the BIG-IP
+    bigip_vlan:
+     provider: "{{ provider }}"
+     name: "{{ item.name }}"
+     tag: "{{ item.tag }}"
+     tagged_interface: "{{ item.interface }}"
+    with_items: "{{ vlan_information }}"
+    delegate_to: localhost
+
+  - name: Configure SELF-IPs on the BIG-IP
+    bigip_selfip:
+     provider: "{{ provider }}"
+     name: "{{ item.name }}"
+     address: "{{ item.address }}"
+     netmask: "{{ item.netmask }}"
+     vlan: "{{ item.vlan }}"
+     allow_service: "{{item.allow_service}}"
+    with_items: "{{ selfip_information }}"
+    delegate_to: localhost
+    
+  - name: Create standard LTM profiles
+    bigip_command:
+      provider: "{{ provider }}"
+      commands: "{{ tmsh_commands }}"
+    delegate_to: localhost
