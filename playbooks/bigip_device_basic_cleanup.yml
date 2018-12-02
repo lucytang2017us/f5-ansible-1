@@ -19,7 +19,7 @@
       
   - name: Manage Global Settings
     bigip_sys_global:
-        gui_setup: "on"        
+        gui_setup: "off"        
         state: "present"
         provider: "{{ provider }}"
     delegate_to: localhost
