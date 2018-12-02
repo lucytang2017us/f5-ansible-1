@@ -1,0 +1,67 @@
+
+banner_text: "WARNING MESSAGE. You are accessing the State Street corporation (SSC) enterprise network. 
+        All equipment, systems, services and software are to be used for SSC business purposes only. 
+        Unauthorized access, use, or distribution is in violation of SSC policy and may be a violation of state and/or federal statute. 
+        SSC reserves the right to audit all transactions and data (including e-mail messages), for any purpose, sent over this medium. 
+        Only SSC approved and licensed software that has been scanned for viruses is permitted on this network."
+
+hostname: 'bigipA.f5demo.com'
+
+ntp_servers:
+ - '161.194.227.246'
+ - '155.108.87.246'
+ - '161.194.71.246'
+ - '10.20.96.246'
+time_zone: 'America/New_York'
+
+dns_servers:
+ - '8.8.8.8'
+ - '4.4.4.4'
+
+dns_search_domains:
+ - 'local'
+ - 'localhost'
+
+ip_version: 4
+
+vlan_information:
+ - name: 'External'
+   tag: '10'
+   interface: '1.1'
+   state: 'absent'
+ - name: 'Internal'
+   tag: '11'
+   interface: '1.2'
+   state: 'absent'
+
+selfip_information:
+ - name: 'External-SelfIP'
+   address: '10.168.68.15'
+   netmask: '255.255.255.0'
+   vlan: 'External'
+   allow_service: 'default'
+   state: 'absent'
+ - name: 'Internal-SelfIP'
+   address: '192.168.68.15'
+   netmask: '255.255.255.0'
+   vlan: 'Internal'
+   allow_service: 'default'
+   state: 'absent'
+
+module_provisioning:
+ - name: 'ltm'
+   level: 'nominal'
+   state: 'present'
+ - name: 'gtm'
+   level: 'nominal'
+   state: 'absent'
+ - name: 'apm'
+   level: 'nominal'
+   state: 'absent'
+   
+tmsh_commands:
+ - 'delete ltm ssc-src_addr_1500'
+ - 'delete ltm profile ssc-tcp-3600 idle-timeout 3600'
+ - 'delete ltm profile http-xff'
+ - 'delete ltm profile standard_ssc-clientssl'
+ 
