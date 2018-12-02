@@ -27,7 +27,6 @@
   - name: Configure NTP server on BIG-IP
     bigip_device_ntp:
       ntp_servers: "{{ ntp_servers }}"
-      timezone: "{{time_zone}}"
       state: "absent"
       provider: "{{ provider }}"
     delegate_to: localhost
@@ -35,16 +34,12 @@
   - name: Manage SSHD setting on BIG-IP
     bigip_device_sshd:
       banner: "disabled"
-      banner_text: " {{ banner_text }}"
-      inactivity_timeout: 1200 
       provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Manage BIG-IP DNS settings
     bigip_device_dns:
      name_servers: "{{ dns_servers }}"
-     search: "{{ dns_search_domains }}"
-     ip_version: "{{ ip_version }}"
      state: "absent"
      provider: "{{ provider }}"
     delegate_to: localhost
@@ -71,6 +66,7 @@
      name: "{{ item.name }}"
      tag: "{{ item.tag }}"
      tagged_interface: "{{ item.interface }}"
+     state: "{{ item.state }}"
     with_items: "{{ vlan_information }}"
     delegate_to: localhost
 
@@ -82,6 +78,7 @@
      netmask: "{{ item.netmask }}"
      vlan: "{{ item.vlan }}"
      allow_service: "{{item.allow_service}}"
+     state: "{{ item.state }}"
     with_items: "{{ selfip_information }}"
     delegate_to: localhost
     
