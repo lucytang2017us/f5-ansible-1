@@ -1,10 +1,10 @@
 ---
-- name: Onboarding New BIG-IP Device
+- name: Cleanup Onboarding New BIG-IP Device
   hosts: bigip
   gather_facts: false
   
   vars_files:
-    - "../files/var-onboard-network_file.yml"
+    - "../files/var-onboard-cleanup_file.yml"
 
   tasks:
   
@@ -19,10 +19,8 @@
       
   - name: Manage Global Settings
     bigip_sys_global:
-        gui_setup: "off"        
+        gui_setup: "on"        
         state: "present"
-        console_timeout: 1200
-        banner_text: "{{ banner_text }}"
         provider: "{{ provider }}"
     delegate_to: localhost
     
@@ -30,20 +28,15 @@
     bigip_device_ntp:
       ntp_servers: "{{ ntp_servers }}"
       timezone: "{{time_zone}}"
-      provider: "{{ provider }}"
-    delegate_to: localhost
-
-  - name: Configure BIG-IP hostname
-    bigip_hostname:
-      hostname: "{{ hostname }}"
+      state: "absent"
       provider: "{{ provider }}"
     delegate_to: localhost
 
   - name: Manage SSHD setting on BIG-IP
     bigip_device_sshd:
-      banner: "enabled"
+      banner: "disabled"
       banner_text: " {{ banner_text }}"
-      inactivity_timeout: 1200
+      inactivity_timeout: 1200 
       provider: "{{ provider }}"
     delegate_to: localhost
 
@@ -52,6 +45,7 @@
      name_servers: "{{ dns_servers }}"
      search: "{{ dns_search_domains }}"
      ip_version: "{{ ip_version }}"
+     state: "absent"
      provider: "{{ provider }}"
     delegate_to: localhost
 
