@@ -78,6 +78,14 @@
             "gw": "1.2.3.254",
             "network": "default",
             "mtu": 0
+        },
+        "configsync": {
+            "class": "ConfigSync",
+            "configsyncIp": "/Common/external-self/address"
+        },
+        "failoverAddress": {
+            "class": "FailoverUnicast",
+            "address": "/Common/external-self/address"
         }
     }
 }
