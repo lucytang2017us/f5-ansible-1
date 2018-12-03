@@ -24,8 +24,8 @@
 
   - name: Send AS3 request
     uri:
-      url: "https://{{inventory_hostname}}:{{ bigip_port }}{{uri}}"
-      method: "{{method}}"
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}/mgmt/shared/declarative-onboarding"
+      method: "POST"
       headers:
         X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
       body_format: json
