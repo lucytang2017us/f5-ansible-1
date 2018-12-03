@@ -39,7 +39,7 @@
             "ltm": "nominal",
             "afm": "nominal"
         },
-        "external": {
+        "external_vlan": {
             "class": "VLAN",
             "tag": 4094,
             "mtu": 1500,
@@ -50,7 +50,7 @@
                 }
             ]
         },
-        "internal": {
+        "internal_vlan": {
             "class": "VLAN",
             "tag": 3094,
             "mtu": 1500,
@@ -61,7 +61,7 @@
                 }
             ]
         },
-        "ha": {
+        "ha_vlan": {
             "class": "VLAN",
             "tag": 2094,
             "mtu": 1500,
@@ -72,21 +72,21 @@
                 }
             ]
         },
-        "external-self": {
+        "internal-self": {
             "class": "SelfIp",
             "address": "1.2.3.4/24",
             "vlan": "internal",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
-        "external-self1": {
+        "ha-self": {
             "class": "SelfIp",
             "address": "1.2.3.5/24",
             "vlan": "ha",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
-        "external-self2": {
+        "external-self": {
             "class": "SelfIp",
             "address": "1.2.3.6/24",
             "vlan": "external",
@@ -101,11 +101,11 @@
         },
         "configsync": {
             "class": "ConfigSync",
-            "configsyncIp": "/Common/external-self1/address"
+            "configsyncIp": "/Common/ha-self/address"
         },
         "failoverAddress": {
             "class": "FailoverUnicast",
-            "address": "/Common/external-self1/address"
+            "address": "/Common/ha-self/address"
         }
     }
 }
