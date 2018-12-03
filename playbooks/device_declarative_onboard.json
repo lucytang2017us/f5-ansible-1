@@ -3,12 +3,7 @@
     "class": "Device",
     "Common": {
         "class": "Tenant",
-        "hostname": "bigip1.example.com",
-        "myLicense": {
-            "class": "License",
-            "licenseType": "regKey",
-            "regKey": "AAAAA-BBBBB-CCCCC-DDDDD-EEEEEEE"
-        },
+        "hostname": "bigipC.example.com",
         "myDns": {
             "class": "DNS",
             "nameServers": [
