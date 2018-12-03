@@ -58,12 +58,6 @@
                     "tagged": false
                 }
             ]
-        },
-        "default": {
-            "class": "Route",
-            "gw": "10.1.20.1",
-            "network": "default",
-            "mtu": 1500
         }
     }
 }
