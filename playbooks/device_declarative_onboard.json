@@ -58,6 +58,19 @@
                     "tagged": false
                 }
             ]
+        },
+        "external-self": {
+            "class": "SelfIp",
+            "address": "1.2.3.4/24",
+            "vlan": "external",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "myRoute": {
+            "class": "Route",
+            "gw": "1.2.3.254",
+            "network": "default",
+            "mtu": 0
         }
     }
 }
