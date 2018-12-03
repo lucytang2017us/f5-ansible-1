@@ -66,9 +66,16 @@
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
-        "external-self2": {
+        "external-self1": {
             "class": "SelfIp",
             "address": "1.2.3.5/24",
+            "vlan": "external",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "external-self3": {
+            "class": "SelfIp",
+            "address": "1.2.3.6/24",
             "vlan": "external",
             "allowService": "default",
             "trafficGroup": "traffic-group-1"
