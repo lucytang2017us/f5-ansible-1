@@ -59,6 +59,17 @@
                 }
             ]
         },
+        "internal": {
+            "class": "VLAN",
+            "tag": 3094,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": false
+                }
+            ]
+        },
         "external-self": {
             "class": "SelfIp",
             "address": "1.2.3.4/24",
