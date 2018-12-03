@@ -34,19 +34,10 @@
             "password": "admin",
             "shell": "bash"
         },
-        "anotherUser": {
-            "class": "User",
-            "userType": "regular",
-            "password": "foobar",
-            "partitionAccess": {
-                "Common": {
-                    "role": "guest"
-                }
-            }
-        },
         "myProvisioning": {
             "class": "Provision",
-            "ltm": "nominal"
+            "ltm": "nominal",
+            "afm": "nominal"
         },
         "external": {
             "class": "VLAN",
@@ -70,17 +61,28 @@
                 }
             ]
         },
+        "ha": {
+            "class": "VLAN",
+            "tag": 2094,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.3",
+                    "tagged": false
+                }
+            ]
+        },
         "external-self": {
             "class": "SelfIp",
             "address": "1.2.3.4/24",
-            "vlan": "external",
+            "vlan": "internal",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
         "external-self1": {
             "class": "SelfIp",
             "address": "1.2.3.5/24",
-            "vlan": "external",
+            "vlan": "ha",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
@@ -99,11 +101,11 @@
         },
         "configsync": {
             "class": "ConfigSync",
-            "configsyncIp": "/Common/external-self/address"
+            "configsyncIp": "/Common/external-self1/address"
         },
         "failoverAddress": {
             "class": "FailoverUnicast",
-            "address": "/Common/external-self/address"
+            "address": "/Common/external-self1/address"
         }
     }
 }
