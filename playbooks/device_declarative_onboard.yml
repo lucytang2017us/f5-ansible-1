@@ -1,0 +1,35 @@
+---
+# file: device_declarative_onboard.yml
+- name: Configure new device based on JSON declaration
+  hosts: bigip
+  gather_facts: false
+  connection: local
+ 
+  tasks:
+
+  - name: Get an API token
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}/mgmt/shared/authn/login"
+      method: POST
+      body:
+        {
+          "username": "{{ bigip_username }}",
+          "password": "{{ bigip_password }}",
+           "loginProviderName": "tmos"
+        }
+      status_code: 200
+      body_format: json
+      validate_certs: "{{ validate_certs }}"
+    register: auth
+
+  - name: Send AS3 request
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}{{uri}}"
+      method: "{{method}}"
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      body_format: json
+      body: "{{lookup('file','device_declarative_onboard.json')}}"
+      validate_certs: "{{ validate_certs }}"
+      status_code: 200
+    delegate_to: localhost
