@@ -59,7 +59,7 @@
                 }
             ]
         },
-        "external-self1": {
+        "external-self": {
             "class": "SelfIp",
             "address": "1.2.3.4/24",
             "vlan": "external",
