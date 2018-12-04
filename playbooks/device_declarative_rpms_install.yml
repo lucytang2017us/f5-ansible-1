@@ -7,7 +7,7 @@
 # Set Var for curent DO file name
   - name: Retrieve DO Install Version
     find:
-      paths: ./files
+      paths: ../files
       patterns: "f5-decl*.rpm"
     register: dorpm
     delegate_to: localhost
@@ -15,7 +15,7 @@
 # Set Var for curent AS3 file name
   - name: Retrieve AS3 Install Version
     find:
-      paths: ./files
+      paths: ../files
       patterns: "f5-appsvcs*.rpm"
     register: as3rpm
     delegate_to: localhost
