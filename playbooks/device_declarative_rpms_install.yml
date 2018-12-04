@@ -3,6 +3,15 @@
   gather_facts: false
 
   tasks:
+# Set provider  
+  - name: Setup provider
+    set_fact:
+      provider:
+        server: "{{ inventory_hostname }}"
+        server_port: "{{ bigip_port }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "{{ validate_certs }}"
 
 # Set Var for curent DO file name
   - name: Retrieve DO Install Version
@@ -22,7 +31,7 @@
 
   - name: Install DO
     bigip_iapplx_package:
-      provider: "{{ hostvars[inventory_hostname]['provider']  }}"
+      provider: "{{ provider }}"
       package: "{{ dorpm.files[0].path }}"
     delegate_to: localhost
 
@@ -31,7 +40,7 @@
 
   - name: Install AS3
     bigip_iapplx_package:
-      provider: "{{ hostvars[inventory_hostname]['provider']  }}"
+      provider: "{{ provider }}"
       package: "{{ as3rpm.files[0].path }}"
     delegate_to: localhost
 
