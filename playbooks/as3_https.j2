@@ -55,7 +55,7 @@
                          "http"
                      ],
                      "loadBalancingMode": "{{lb_mode}}",
-                     "slowRampTime": "{{slow_rptime}}",
+                     "slowRampTime": {{slow_rptime}},
                      "members": [
                       {% for member in pool_members %}
                         {
