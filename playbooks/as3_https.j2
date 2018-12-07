@@ -36,7 +36,10 @@
                       "class": "Certificate",
                       "certificate": {"bigip": "{{cert_name}}"},
                       "privateKey":  {"bigip": "{{cert_key}}"},
-                      "passphrase": "{{ssl_passphrase}}"
+                      "passphrase": {
+                         "ciphertext": "{{ssl_passphrase}}",
+                         "protected": "{{passphrase_protected}}"
+                      }
                  },
                  {% for virtual in virtual_servers %}
                  "{{virtual.name}}": {
