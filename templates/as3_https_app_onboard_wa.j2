@@ -24,8 +24,7 @@
                   "pool": "{{pool_name}}",
                   "serverTLS": "{{client_ssl_pf}}",
                   "profileHTTP": { "bigip": "{{http_profile}}" },
-                  "profileTCP": { "bigip": "{{tcp_profile}}" },
-                  "profileTCP": { "bigip": "f5_tcp_progressive_12_1" },
+                  "profileTCP": { "bigip": "/Common/f5_tcp_progressive_12_1" },
                   "persistenceMethods": [{"bigip": "{{persist_profile}}"}]
                  },
                  {% endfor %}
