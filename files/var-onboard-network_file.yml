@@ -52,7 +52,7 @@ module_provisioning:
    state: 'absent'
  - name: 'apm'
    level: 'nominal'
-   state: 'present'
+   state: 'absent'
    
 tmsh_commands:
  - 'create ltm persistence source-addr ssc-src_addr_1500 timeout 1500'
