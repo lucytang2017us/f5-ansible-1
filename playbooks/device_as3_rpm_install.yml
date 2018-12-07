@@ -56,7 +56,7 @@
       headers:
         X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
       body_format: json
-      body: "{{lookup('file','temp_json_file')}}"
+      body: "{{lookup('file','temp_tenant.json')}}"
       validate_certs: "{{ validate_certs }}"
       status_code: 200
     delegate_to: localhost
