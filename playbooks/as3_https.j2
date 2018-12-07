@@ -19,18 +19,12 @@
                    "virtualAddresses": [
                      "{{virtual_address}}"
                    ],
-                   "snat": "{{virtual_address}}",
+                   "snat": "{{snat_value}}",
                    "pool": "{{pool_name}}",
                    "serverTLS": "webtls",
                    "profileHTTP": { "bigip": "{{http_pf}}" },
                    "profileTCP": { "bigip": "{{tcp_pf}}" },
                    "persistenceMethods": [{"bigip": "{{persist_pf}}"}]
-                 },
-                 "{{virtual_address}}": {
-                     "class": "SNAT_Pool",
-                     "snatAddresses": [
-                        "{{virtual_address}}"
-                   ] 
                  },
                  "webtls": {
                      "class": "TLS_Server",
@@ -50,15 +44,9 @@
                    "virtualAddresses": [
                      "{{virtual.ip}}"
                    ],
-                   "snat": "{{virtual.ip}}",
+                   "snat": "{{snat_value}}",
                    "pool": "{{pool_name}}",
                    "serverTLS": "webtls"
-                 },
-                 "{{virtual.ip}": {
-                   "class": "SNAT_Pool",
-                   "snatAddresses": [
-                      "{{virtual.ip}}"
-                   ]
                  },
                  {% endfor %}
                  "{{pool_name}}": {
