@@ -5,13 +5,12 @@ banner_text: "WARNING MESSAGE. You are accessing the State Street corporation (S
         SSC reserves the right to audit all transactions and data (including e-mail messages), for any purpose, sent over this medium. 
         Only SSC approved and licensed software that has been scanned for viruses is permitted on this network."
 
-hostname: 'bigipA.f5demo.com'
+hostname: 'bigipD.f5demo.com'
 
 ntp_servers:
  - '161.194.227.246'
  - '155.108.87.246'
- - '161.194.71.246'
- - '10.20.96.246'
+
 time_zone: 'America/New_York'
 
 dns_servers:
