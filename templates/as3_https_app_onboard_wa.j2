@@ -25,6 +25,7 @@
                   "serverTLS": "{{client_ssl_pf}}",
                   "profileHTTP": { "bigip": "{{http_profile}}" },
                   "profileTCP": { "bigip": "{{tcp_profile}}" },
+                  "profileTCP": { "bigip": "f5_tcp_progressive_12_1" },
                   "persistenceMethods": [{"bigip": "{{persist_profile}}"}]
                  },
                  {% endfor %}
@@ -64,16 +65,6 @@
                  }
              }
          }
-     },
-     "Common": {
-        "class": "Tenant",
-        "Shared": {
-            "class": "Application",
-            "template": "shared",
-            "f5_tcp_progressive_12_1": {
-               "class": "TCP_Profile"
-            }
-        }
      }
  }
  
