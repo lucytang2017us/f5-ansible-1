@@ -13,7 +13,7 @@
              "defaultRouteDomain": 0,
              "{{application_name}}": {
                  "class": "Application",
-                 "template": "generic",
+                 "template": "tcp",
                  {% for virtual in virtual_servers %}
                  "{{virtual.name}}": {
                    "class": "Service_HTTPS",
