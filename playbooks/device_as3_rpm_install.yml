@@ -1,0 +1,33 @@
+---
+
+- name: Push rpm and install onto BIG-IP
+  hosts: bigip
+  gather_facts: false
+
+  tasks:
+# Set provider  
+  - name: Setup provider
+    set_fact:
+      provider:
+        server: "{{ inventory_hostname }}"
+        server_port: "{{ bigip_port }}"
+        user: "{{ bigip_username }}"
+        password: "{{ bigip_password }}"
+        validate_certs: "{{ validate_certs }}"
+
+# Set Var for curent AS3 file name
+  - name: Retrieve AS3 Install Version
+    find:
+      paths: ../files
+      patterns: "f5-appsvcs*.rpm"
+    register: as3rpm
+    delegate_to: localhost
+
+  - name: Install AS3
+    bigip_iapplx_package:
+      provider: "{{ provider }}"
+      package: "{{ as3rpm.files[0].path }}"
+    delegate_to: localhost
+
+  - pause:
+      seconds: 5
