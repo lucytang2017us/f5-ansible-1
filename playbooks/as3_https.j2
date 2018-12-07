@@ -42,7 +42,6 @@
                       "class": "Certificate",
                       "certificate": {"bigip": "{{cert_name}}"},
                       "privateKey":  {"bigip": "{{cert_key}}"},
-                      "chainCA": "{{cert_chain}}",
                       "passphrase": "{{ssl_passphrase}}"
                  },
                  {% for virtual in virtual_servers %}
