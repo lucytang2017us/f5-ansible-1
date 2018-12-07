@@ -1,0 +1,26 @@
+{
+     "class": "AS3",
+     "action": "deploy",
+     "persist": true,
+     "declaration": {
+         "class": "ADC",
+         "schemaVersion": "3.6.0",
+         "id": "temp-declaration-01",
+         "label": "Temp",
+         "remark": "Temp HTTPS application",
+         "TEMP": {
+             "class": "Tenant",
+             "defaultRouteDomain": 0,
+             "Application_Temp": {
+                 "class": "Application",
+                 "template": "https",
+                  "serviceMain": {
+                      "class": "Service_HTTPS",
+                      "virtualAddresses": [
+                         "192.168.2.1"
+                      ]
+                  }
+             }
+         }
+     }
+ }
