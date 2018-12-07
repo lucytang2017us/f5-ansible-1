@@ -62,8 +62,14 @@
     delegate_to: localhost
     
   - pause:
-      seconds: 5
+      seconds: 60
       
-  
-      
-      
+  - name: Send AS3 request
+    uri:
+      url: "https://{{inventory_hostname}}:{{ bigip_port }}/mgmt/shared/appsvcs/declare/TEMP"
+      method: "DELETE"
+      headers:
+        X-F5-Auth-Token: "{{ auth['json']['token']['name'] }}"
+      validate_certs: "{{ validate_certs }}"
+      status_code: 200
+    delegate_to: localhost
