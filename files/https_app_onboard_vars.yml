@@ -20,6 +20,6 @@ input_csv_file: "{{input_files_path}}/{{application_name}}_{{action_type}}.csv"
 output_yml_file: "{{vars_file_path}}/{{application_name}}_{{action_type}}_vars.yml"
 
 # AS3 JSON file generation parameters 
-src_template_file: "{{templates_path}}/as3_https_app_{{action_type}}_wa.j2"
+src_template_file: "{{templates_path}}/as3_https_app_{{action_type}}.j2"
 dest_json_file: "{{json_file_path}}/{{application_name}}_{{action_type}}.json"
 
