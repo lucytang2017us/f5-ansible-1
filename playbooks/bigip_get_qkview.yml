@@ -12,7 +12,7 @@
         dest: /scratch/localhost.localdomain.qkview
         provider:
           password: "{{ bigip_password }}"
-          server: 10.1.1.243
+          server: "{{ inventory_hostname }}"
           user: "{{ bigip_username }}"
           validate_certs: "no"
       delegate_to: localhost
